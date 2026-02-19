@@ -21,11 +21,9 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class IncidentController {
 
-    private final IncidentService incidentService;
+    @Autowired
+    private IncidentService incidentService;
 
-    /**
-     * POST /api/incidents — Create a new incident.
-     */
     @PostMapping
     public ResponseEntity<IncidentResponseDTO> createIncident(
             @Valid @RequestBody IncidentRequestDTO request) {
@@ -33,9 +31,6 @@ public class IncidentController {
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
-    /**
-     * GET /api/incidents — List incidents with pagination, filtering, search, and sorting.
-     */
     @GetMapping
     public ResponseEntity<Page<IncidentResponseDTO>> getAllIncidents(
             @RequestParam(required = false) String search,
@@ -47,18 +42,12 @@ public class IncidentController {
         return ResponseEntity.ok(page);
     }
 
-    /**
-     * GET /api/incidents/{id} — Get a specific incident by ID.
-     */
     @GetMapping("/{id}")
     public ResponseEntity<IncidentResponseDTO> getIncidentById(@PathVariable Long id) {
         IncidentResponseDTO incident = incidentService.getIncidentById(id);
         return ResponseEntity.ok(incident);
     }
 
-    /**
-     * PATCH /api/incidents/{id} — Partial update of an incident.
-     */
     @PatchMapping("/{id}")
     public ResponseEntity<IncidentResponseDTO> updateIncident(
             @PathVariable Long id,

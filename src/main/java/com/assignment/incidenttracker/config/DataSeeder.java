@@ -67,7 +67,7 @@ public class DataSeeder implements CommandLineRunner {
             return;
         }
 
-        Random random = new Random(42); // fixed seed for reproducibility
+        Random random = new Random(42);
         List<Incident> incidents = new ArrayList<>();
 
         Severity[] severities = Severity.values();

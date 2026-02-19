@@ -8,7 +8,6 @@ import org.springframework.data.jpa.domain.Specification;
 public final class IncidentSpecification {
 
     private IncidentSpecification() {
-        // Utility class — prevent instantiation
     }
 
     public static Specification<Incident> hasStatus(Status status) {
